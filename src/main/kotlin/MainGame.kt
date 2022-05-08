@@ -1,5 +1,3 @@
-import kotlin.random.Random
-
 var HEALTH = 0
 var POWER = 0
 var COUNTOFKILLEDMONSTERS = 0
@@ -9,6 +7,7 @@ fun main() {
     powerOfKnight()
     println("Ваше здоровье : $HEALTH")
     println("Ваше здоровье : $POWER")
+    generatorOfEvents()
 }
 
 
@@ -28,29 +27,29 @@ fun powerOfKnight(){
 
 fun generatorOfEvents() {
     val events = arrayOf("Fight", "Apple", "Sword")
-    val result = Random.nextInt(0,events.size-1)
+    val result = (1..events.size).random()
 
-    if (result == 0) {
+    if (result == 1) {
         //method Fight
-    } else if (result == 1) {
+    } else if (result == 2) {
         //method Apple
     } else {
-        //method Sword
+        getSword()
     }
 }
 
 fun getSword() {
-    val swordPower = Random.nextInt(1,50)
+    val swordPower = (5..15).random()
     var isUserChoiceNotCorrect = true
     println("...Ты находишь на своем пути меч! Его сила равна: $swordPower")
     println("Хочешь взять этот меч? Введи '1' - чтобы заменить меч на новый. Введи '2' - чтобы пройти мимо")
     while (isUserChoiceNotCorrect) {
         val userChoice = readLine()
         if (userChoice != null) {
-            if (userChoice.toInt() == 1) {
+            if (userChoice == "1") {
                 isUserChoiceNotCorrect = false
-                //POWER = powerSword
-            } else if (userChoice.toInt() == 2) {
+                POWER = swordPower
+            } else if (userChoice == "2") {
                 isUserChoiceNotCorrect = false
             } else {
                 println("Введенно неправильное значение!")
