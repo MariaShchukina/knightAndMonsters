@@ -7,10 +7,11 @@ fun main() {
     healthOfKnight()
     powerOfKnight()
     while (COUNTOFKILLEDMONSTERS < 10) {
-        println("Ваше здоровье : $HEALTH")
+    println("Ваше здоровье : $HEALTH")
         println("Ваша сила : $POWER")
         meetingWithMonster()
     }
+    getAnApple()
 }
 
 fun welcome(){
@@ -70,4 +71,11 @@ fun userChoice(monsterPower: Int, monsterHealth: Int) {
             println("Попробуй ещё раз")
         }
     }
+}
+
+fun getAnApple(): Int {
+    var bonus = (10..15).random()
+    HEALTH += bonus
+    println("Поздравляю! Ты нашёл яблочко, которое дарует тебе силу. Ваше здоровье: $HEALTH")
+    return HEALTH
 }
