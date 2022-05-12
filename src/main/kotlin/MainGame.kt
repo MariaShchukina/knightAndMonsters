@@ -2,19 +2,17 @@
 
 var HEALTH = 1
 var POWER = 1
-
 var COUNTOFKILLEDMONSTERS = 0
+
 fun main() {
     welcome()
     healthOfKnight()
     powerOfKnight()
-    while (COUNTOFKILLEDMONSTERS < 10) {
-    println("Ваше здоровье : $HEALTH")
-
+    while (COUNTOFKILLEDMONSTERS < 10 && HEALTH > 0) {
+        println("Ваше здоровье : $HEALTH")
         println("Ваша сила : $POWER")
-        meetingWithMonster()
+        generatorOfEvents()
     }
-    getAnApple()
 }
 
 
@@ -57,7 +55,7 @@ fun userChoice(monsterPower: Int, monsterHealth: Int) {
     var monsterHP = monsterHealth
     var monsterPP = monsterPower
     if (knightInput != null) {
-        if (knightInput.toInt() == 1) {
+        if (knightInput == "1") {
             while (HEALTH > 0 && monsterHP > 0){
                 HEALTH -= monsterPower
                 if (HEALTH > 0) {
@@ -70,7 +68,7 @@ fun userChoice(monsterPower: Int, monsterHealth: Int) {
                     println("вы умерли")
                 }
             }
-        } else if (knightInput.toInt() == 2) {
+        } else if (knightInput == "2") {
             println("Вы убежали. Ваше здоровье: $HEALTH. Убитых монстров: $COUNTOFKILLEDMONSTERS.")
         } else {
             println("Попробуй ещё раз")
@@ -83,15 +81,16 @@ fun getAnApple(): Int {
     HEALTH += bonus
     println("Поздравляю! Ты нашёл яблочко, которое дарует тебе силу. Ваше здоровье: $HEALTH")
     return HEALTH
+}
 
 fun generatorOfEvents() {
     val events = arrayOf("Fight", "Apple", "Sword")
     val result = (1..events.size).random()
 
     if (result == 1) {
-        //method Fight
+        meetingWithMonster()
     } else if (result == 2) {
-        //method Apple
+        getAnApple()
     } else {
         getSword()
     }
